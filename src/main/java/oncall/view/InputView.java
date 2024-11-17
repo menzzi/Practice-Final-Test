@@ -11,6 +11,7 @@ public class InputView {
         String userInput = Console.readLine();
         Validation.validateInputFormat(userInput);
         Validation.validateMonth(userInput);
+        userInput = userInput.replaceAll(" ","");
         return userInput.split(",");
     }
 
