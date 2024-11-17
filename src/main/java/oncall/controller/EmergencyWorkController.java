@@ -32,11 +32,15 @@ public class EmergencyWorkController {
     }
 
     private void proceed() {
-        String[] dateInformation = input.inputDateInformation();
-        Calendar month = Calendar.getCalendar(dateInformation[0]);
-        String startDay = dateInformation[1];
-        Validation.validateDayOfWeek(findDayIndex(startDay));
-        dealWithWorker(month,startDay);
+        boolean isInputComplete = false;
+        while(!isInputComplete) {
+            String[] dateInformation = input.inputDateInformation();
+            Calendar month = Calendar.getCalendar(dateInformation[0]);
+            String startDay = dateInformation[1];
+            Validation.validateDayOfWeek(findDayIndex(startDay));
+            dealWithWorker(month,startDay);
+            isInputComplete = true;
+        }
     }
 
     private void dealWithWorker(Calendar month, String startDay){
