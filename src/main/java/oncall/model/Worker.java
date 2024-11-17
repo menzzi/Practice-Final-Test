@@ -1,15 +1,15 @@
 package oncall.model;
 
-import java.util.Queue;
+import java.util.Deque;
 
 public class Worker {
-    private final Queue<String> workers;
+    private final Deque<String> workers;
 
-    public Worker(Queue<String> workers){
+    public Worker(Deque<String> workers){
         this.workers = workers;
     }
 
-    public Queue<String> getWorkers() {
+    public Deque<String> getWorkers() {
         return workers;
     }
 }
