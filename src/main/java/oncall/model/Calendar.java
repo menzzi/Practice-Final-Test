@@ -12,7 +12,8 @@ public enum Calendar {
     SEPTEMBER("9",30),
     OCTOBER("10",31),
     NOVEMBER("11",30),
-    DECEMBER("12",31);
+    DECEMBER("12",31),
+    DEFAULT("",0);
 
     private final String month;
     private final int totalDate;
@@ -20,5 +21,14 @@ public enum Calendar {
     Calendar(String month, int totalDate){
         this.month = month;
         this.totalDate = totalDate;
+    }
+
+    public int getTotalDate(String inputMonth){
+        for(Calendar calendar:Calendar.values()){
+            if(inputMonth.equals(calendar.month)){
+                return calendar.totalDate;
+            }
+        }
+        return DEFAULT.totalDate;
     }
 }
