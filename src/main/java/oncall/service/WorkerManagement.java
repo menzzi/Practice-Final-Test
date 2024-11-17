@@ -7,7 +7,7 @@ import java.util.List;
 import oncall.validation.Validation;
 
 public class WorkerManagement {
-    public Deque<String> convertStringToDeque(String input){
+    public static Deque<String> convertStringToDeque(String input){
         Deque<String> workers = new LinkedList<>();
         Validation.validateInputFormat(input);
 

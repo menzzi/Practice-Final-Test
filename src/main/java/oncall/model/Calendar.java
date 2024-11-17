@@ -26,7 +26,7 @@ public enum Calendar {
         this.legalHoliday = legalHoliday;
     }
 
-    public int getTotalDate(String inputMonth){
+    public static int getTotalDate(String inputMonth){
         for(Calendar calendar:Calendar.values()){
             if(inputMonth.equals(calendar.month)){
                 return calendar.totalDate;

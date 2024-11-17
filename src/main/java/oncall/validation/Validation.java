@@ -1,5 +1,7 @@
 package oncall.validation;
 
+import oncall.model.Worker;
+
 public class Validation {
     private static final String INVALIDATE_INPUT = "유효하지 않은 입력 값입니다. 다시 입력해 주세요.";
 
@@ -41,6 +43,20 @@ public class Validation {
     public static void validateWorkerNumber(int dequeSize){
         if(dequeSize < 5 || dequeSize > 35){
             throw new IllegalArgumentException(INVALIDATE_INPUT);
+        }
+    }
+
+    public static void validateDayOfWeek(int index){
+        if(index < 0){
+            throw new IllegalArgumentException(INVALIDATE_INPUT);
+        }
+    }
+
+    public static void validateWorkers(Worker weekday, Worker weekend){
+        for(String name : weekday.getWorkers()){
+            if(!weekend.getWorkers().contains(name)){
+                throw new IllegalArgumentException(INVALIDATE_INPUT);
+            }
         }
     }
 }
