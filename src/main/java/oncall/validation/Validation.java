@@ -4,8 +4,8 @@ public class Validation {
     private static final String INVALIDATE_INPUT = "유효하지 않은 입력 값입니다. 다시 입력해 주세요.";
 
     public static void validateInputFormat(String input){
-        String regex = "^[0-9\\-가-힣,]*$";
-        if (input.contains(regex)) {
+        String regex = "[^0-9\\-가-힣,]*$";
+        if (!input.contains(regex)) {
             throw new IllegalArgumentException(INVALIDATE_INPUT);
         }
     }
