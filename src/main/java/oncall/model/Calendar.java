@@ -26,13 +26,21 @@ public enum Calendar {
         this.legalHoliday = legalHoliday;
     }
 
-    public static int getTotalDate(String inputMonth){
+    public static Calendar getCalendar(String inputMonth){
         for(Calendar calendar:Calendar.values()){
             if(inputMonth.equals(calendar.month)){
-                return calendar.totalDate;
+                return calendar;
             }
         }
-        return DEFAULT.totalDate;
+        return DEFAULT;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public int getTotalDate() {
+        return totalDate;
     }
 
     public int[] getLegalHoliday() {

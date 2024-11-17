@@ -12,4 +12,22 @@ public class Worker {
     public Deque<String> getWorkers() {
         return workers;
     }
+
+    public String getWorker(){
+        return workers.peek();
+    }
+
+    public String bringOutFirstWorker(){
+        String firstWorker = workers.getFirst();
+        workers.addLast(firstWorker);
+        return firstWorker;
+    }
+
+    public String bringOutSecondWorker(){
+        String firstWorker = workers.getFirst();
+        String secondWorker = workers.getFirst();
+        workers.addFirst(firstWorker);
+        workers.addLast(secondWorker);
+        return secondWorker;
+    }
 }
