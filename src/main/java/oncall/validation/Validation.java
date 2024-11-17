@@ -7,7 +7,7 @@ public class Validation {
 
     public static void validateInputFormat(String input){
         String regex = "[^0-9\\-가-힣,]*$";
-        if (!input.contains(regex)) {
+        if (input.contains(regex)) {
             throw new IllegalArgumentException(INVALIDATE_INPUT);
         }
     }

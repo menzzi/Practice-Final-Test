@@ -60,14 +60,13 @@ public class EmergencyWorkController {
         int index = findDayIndex(startDay);
         List<String> confirmedWorker = new ArrayList<>();
 
-        for (int date = 1; date < month.getTotalDate(); date++) {
+        for (int date = 1; date <= month.getTotalDate(); date++) {
             String mark = CalendarManagement.markHoliday(dayOfWeek[index],date, month.getLegalHoliday());
-            String workerName = appointWorker(confirmedWorker,weekdayWorkers,weekendWorkers,true);
-            if(mark.length() > 1){
-                workerName = appointWorker(confirmedWorker,weekdayWorkers,weekendWorkers,false);
-            }
+            boolean isWeekday = isWeekday(mark,index);
+            String workerName = appointWorker(confirmedWorker,weekdayWorkers,weekendWorkers,isWeekday);
             confirmedWorker.add(workerName);
             output.printEmergencySchedule(month.getMonth(), date, mark, workerName);
+            index ++;
             index %= 7;
         }
     }
@@ -94,6 +93,13 @@ public class EmergencyWorkController {
             }
         }
         return false;
+    }
+
+    private boolean isWeekday(String mark, int index){
+        if(index == 0 || index == 6 || mark.length() > 1){
+            return false;
+        }
+        return true;
     }
 
     private int findDayIndex(String startDay) {

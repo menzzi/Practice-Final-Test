@@ -14,18 +14,18 @@ public class Worker {
     }
 
     public String getWorker(){
-        return workers.peek();
+        return workers.getFirst();
     }
 
     public String bringOutFirstWorker(){
-        String firstWorker = workers.getFirst();
+        String firstWorker = workers.pop();
         workers.addLast(firstWorker);
         return firstWorker;
     }
 
     public String bringOutSecondWorker(){
-        String firstWorker = workers.getFirst();
-        String secondWorker = workers.getFirst();
+        String firstWorker = workers.pop();
+        String secondWorker = workers.pop();
         workers.addFirst(firstWorker);
         workers.addLast(secondWorker);
         return secondWorker;
