@@ -5,7 +5,7 @@ import java.util.Deque;
 public class Worker {
     private final Deque<String> workers;
 
-    public Worker(Deque<String> workers){
+    public Worker(Deque<String> workers) {
         this.workers = workers;
     }
 
@@ -13,17 +13,17 @@ public class Worker {
         return workers;
     }
 
-    public String getWorker(){
+    public String getWorker() {
         return workers.getFirst();
     }
 
-    public String bringOutFirstWorker(){
+    public String bringOutFirstWorker() {
         String firstWorker = workers.pop();
         workers.addLast(firstWorker);
         return firstWorker;
     }
 
-    public String bringOutSecondWorker(){
+    public String bringOutSecondWorker() {
         String firstWorker = workers.pop();
         String secondWorker = workers.pop();
         workers.addFirst(firstWorker);

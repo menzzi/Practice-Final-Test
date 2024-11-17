@@ -10,7 +10,7 @@ public class Application {
         InputView input = new InputView();
         OutputView output = new OutputView();
 
-        EmergencyWorkController emergencyWorkController = new EmergencyWorkController(input,output);
+        EmergencyWorkController emergencyWorkController = new EmergencyWorkController(input, output);
         emergencyWorkController.run();
     }
 }
