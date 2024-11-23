@@ -82,8 +82,7 @@ public class RecommendationController {
         while (!isCollectInput) {
             try {
                 hateMenus = input.inputHateMenu(coach);
-                // 없는 메뉴인지 확인
-                isCollectInput = true;
+                isCollectInput = TheMenu.isContainMenu(hateMenus);
             } catch (IllegalArgumentException e) {
                 output.printErrorMessage(e.getMessage());
             }

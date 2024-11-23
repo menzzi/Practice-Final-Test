@@ -16,6 +16,8 @@ public enum TheMenu {
     private final String category;
     private final List<String> recommendationMenus;
 
+    private static final String INVALIDATE_MENU = "메뉴에 없는 음식입니다.";
+
     TheMenu(String category, List<String> recommendationMenus) {
         this.category = category;
         this.recommendationMenus = recommendationMenus;
@@ -29,6 +31,28 @@ public enum TheMenu {
         TheMenu menu = findCategory(categoryName);
         assert menu != null;
         return Randoms.shuffle(menu.recommendationMenus).get(0);
+    }
+
+    public static boolean isContainMenu(List<String> menus){
+        boolean containResult = false;
+        for(String menu : menus){
+            if(allMenuTour(menu)){
+                containResult = true;
+            }
+        }
+        if(!containResult){
+            throw new IllegalArgumentException(INVALIDATE_MENU);
+        }
+        return containResult;
+    }
+
+    private static boolean allMenuTour(String menu){
+        for(TheMenu theMenu : TheMenu.values()){
+            if(theMenu.recommendationMenus.contains(menu)){
+                return true;
+            }
+        }
+        return false;
     }
 
     private static TheMenu findCategory(String categoryName) {
