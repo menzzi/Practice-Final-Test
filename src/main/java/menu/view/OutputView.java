@@ -7,7 +7,7 @@ public class OutputView {
     private final String SERVICE_LAUNCH_STATEMENT = "점심 메뉴 추천을 시작합니다.";
     private final String MENU_RECOMMENDATION_RESULT_STATEMENT = "메뉴 추천 결과입니다.";
     private final String MENU_RECOMMENDATION_END_STATEMENT = "추천을 완료했습니다.";
-    private final String PRINT_FORMAT = "[ %s ]"
+    private final String PRINT_FORMAT = "[ %s ]";
 
     public void printErrorMessage(String errorMessage){
         System.out.printf(ERROR_MESSAGE_FORMAT,errorMessage);

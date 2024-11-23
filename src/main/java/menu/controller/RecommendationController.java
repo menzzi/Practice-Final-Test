@@ -1,5 +1,6 @@
 package menu.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -14,6 +15,7 @@ public class RecommendationController {
     private final OutputView output;
 
     private final List<String> dayOfTheWeek = Arrays.asList(("월요일,화요일,수요일,목요일,금요일").split(","));
+    private final List<RecommendedMenus> recommendedMenus = new ArrayList<>();
 
     public RecommendationController(InputView input, OutputView output) {
         this.input = input;
@@ -25,6 +27,7 @@ public class RecommendationController {
         List<String> coachNames = inputCoachNames();
         RecommendedCategories recommendedCategories = recommendCategory();
         recommendMenu(recommendedCategories.getRecommendedCategories(),coachNames);
+        printResult();
     }
 
     private RecommendedCategories recommendCategory(){
@@ -43,11 +46,12 @@ public class RecommendationController {
 
     private void recommendMenu(List<String> recommendedCategories, List<String> coachNames){
         for(String coach : coachNames){
-            RecommendedMenus recommendedMenu = updateHateMenu(coach);
+            RecommendedMenus eachCoachMenus = updateHateMenu(coach);
             for(String category : recommendedCategories){
                 Menu menu = Menu.getCategory(category);
-                updateMenu(recommendedMenu,menu);
+                updateMenu(eachCoachMenus,menu);
             }
+            recommendedMenus.add(eachCoachMenus);
         }
     }
 
@@ -84,6 +88,10 @@ public class RecommendationController {
     }
 
     private void printResult(){
-        output.
+        output.printResult(dayOfTheWeek);
+        for(RecommendedMenus recommendedMenu: recommendedMenus){
+            output.printMenuRecommendationResult(recommendedMenu.toString());
+        }
+        output.printEndMessage();
     }
 }
