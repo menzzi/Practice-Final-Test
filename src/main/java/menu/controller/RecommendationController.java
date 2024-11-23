@@ -84,6 +84,6 @@ public class RecommendationController {
     }
 
     private void printResult(){
-        
+
     }
 }
