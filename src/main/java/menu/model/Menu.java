@@ -20,12 +20,12 @@ public enum Menu {
         this.recommendationMenus = recommendationMenus;
     }
 
-    public Menu recommendCategory(){
+    public static String recommendCategory(){
         int randomNumber = Randoms.pickNumberInRange(1,5);
-        return Menu.values()[randomNumber];
+        return Menu.values()[randomNumber].category;
     }
 
-    public Menu getCategory(String categoryName) {
+    public static Menu getCategory(String categoryName) {
         for(Menu menu : Menu.values()){
             if(menu.category.equals(categoryName))
                 return menu;
