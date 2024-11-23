@@ -14,7 +14,7 @@ public class RecommendationController {
     private final InputView input;
     private final OutputView output;
 
-    private final List<String> dayOfTheWeek = Arrays.asList(("월요일,화요일,수요일,목요일,금요일").split(","));
+    private final List<String> dayOfTheWeek = new ArrayList<>(Arrays.asList(("월요일,화요일,수요일,목요일,금요일").split(",")));
     private final List<RecommendedMenus> recommendedMenus = new ArrayList<>();
 
     public RecommendationController(InputView input, OutputView output) {
@@ -31,7 +31,7 @@ public class RecommendationController {
     }
 
     private RecommendedCategories recommendCategory(){
-        RecommendedCategories recommendedCategories = new RecommendedCategories(Collections.emptyList());
+        RecommendedCategories recommendedCategories = new RecommendedCategories(new ArrayList<>());
         int index = 0;
         while(index < dayOfTheWeek.size()){
             String category = Menu.recommendCategory();
@@ -65,7 +65,7 @@ public class RecommendationController {
 
     private RecommendedMenus updateHateMenu(String coach){
         boolean isCollectInput = false;
-        List<String> hateMenus = List.of();
+        List<String> hateMenus = new ArrayList<>();
         while(!isCollectInput){
             try{
                 hateMenus = input.inputHateMenu(coach);
@@ -75,7 +75,7 @@ public class RecommendationController {
                 output.printErrorMessage(e.getMessage());
             }
         }
-        return new RecommendedMenus(coach, hateMenus, Collections.emptyList());
+        return new RecommendedMenus(coach, hateMenus, new ArrayList<>());
     }
 
     private List<String> inputCoachNames(){

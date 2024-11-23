@@ -1,6 +1,7 @@
 package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class InputView {
     }
 
     private List<String> validateCoachNames(String userInput){
-        List<String> coachNames = Arrays.asList(userInput.split(","));
+        List<String> coachNames = new ArrayList<>(Arrays.asList(userInput.split(",")));
         if(coachNames.size() < 2 || coachNames.size() > 5){
             throw new IllegalArgumentException(INVALIDATE_COACH_COUNT);
         }
@@ -40,7 +41,7 @@ public class InputView {
     }
 
     private List<String> validateHateMenus(String userInput){
-        List<String> HateMenus = Arrays.asList(userInput.split(","));
+        List<String> HateMenus = new ArrayList<>(Arrays.asList(userInput.split(",")));
         if(HateMenus.size() > 2){
             throw new IllegalArgumentException(INVALIDATE_MENU_COUNT);
         }
