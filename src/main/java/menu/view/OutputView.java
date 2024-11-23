@@ -18,7 +18,7 @@ public class OutputView {
         System.out.println(SERVICE_LAUNCH_STATEMENT);
     }
 
-    public void printMenuRecommendationResult(List<String> dayOfTheWeek){
+    public void printResult(List<String> dayOfTheWeek){
         System.out.println(MENU_RECOMMENDATION_RESULT_STATEMENT);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("구분");
@@ -30,7 +30,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printRecommendationResult(String toStringMessage){
+    public void printMenuRecommendationResult(String toStringMessage){
         System.out.printf(PRINT_FORMAT,toStringMessage);
         System.out.println();
     }
