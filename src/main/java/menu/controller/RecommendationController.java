@@ -3,7 +3,10 @@ package menu.controller;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import menu.model.TheMenu;
 import menu.model.RecommendedCategories;
 import menu.model.RecommendedMenus;
@@ -16,6 +19,7 @@ public class RecommendationController {
 
     private final List<String> dayOfTheWeek = new ArrayList<>(Arrays.asList("월요일", "화요일", "수요일", "목요일", "금요일"));
     private final List<RecommendedMenus> recommendedMenus = new ArrayList<>();
+    private final Map<String,RecommendedMenus> result = new LinkedHashMap<>();
 
     public RecommendationController(InputView input, OutputView output) {
         this.input = input;
@@ -52,11 +56,15 @@ public class RecommendationController {
     private void recommendMenu(List<String> recommendedCategories, List<String> coachNames) {
         for (String coach : coachNames) {
             RecommendedMenus eachCoachMenus = updateHateMenu(coach);
-            for (String category : recommendedCategories) {
+            result.put(coach,eachCoachMenus);
+        }
+        for (String category : recommendedCategories) {
+            for(String name : result.keySet()){
+                RecommendedMenus eachCoachMenus = result.get(name);
                 updateMenu(eachCoachMenus, category);
             }
-            recommendedMenus.add(eachCoachMenus);
         }
+
     }
 
     private void updateMenu(RecommendedMenus eachCoachMenus, String category) {
@@ -97,8 +105,8 @@ public class RecommendationController {
     private void printResult(RecommendedCategories recommendedCategories) {
         output.printResult(dayOfTheWeek);
         output.printMenuRecommendationResult(recommendedCategories.toString());
-        for (RecommendedMenus recommendedMenu : recommendedMenus) {
-            output.printMenuRecommendationResult(recommendedMenu.toString());
+        for(String name : result.keySet()){
+            output.printMenuRecommendationResult(result.get(name).toString());
         }
         output.printEndMessage();
     }
