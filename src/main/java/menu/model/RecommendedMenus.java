@@ -2,11 +2,11 @@ package menu.model;
 
 import java.util.List;
 
-public class RecommendedMenu {
+public class RecommendedMenus {
     private final String coach;
-    private List<String> recommendedMenus;
+    private final List<String> recommendedMenus;
 
-    public RecommendedMenu(String coach, List<String> recommendedMenus){
+    public RecommendedMenus(String coach, List<String> recommendedMenus){
         this.coach = coach;
         this.recommendedMenus = recommendedMenus;
     }

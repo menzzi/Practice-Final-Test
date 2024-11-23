@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum Menu {
+    DEFAULT("",Arrays.asList(("").split(","))),
     JAPANESE("일식", Arrays.asList(("규동, 우동, 미소시루, 스시, 가츠동, 오니기리, 하이라이스, 라멘, 오코노미야끼").split(","))),
     KOREAN("한식",Arrays.asList(("김밥, 김치찌개, 쌈밥, 된장찌개, 비빔밥, 칼국수, 불고기, 떡볶이, 제육볶음").split(","))),
     CHINESE("중식",Arrays.asList(("깐풍기, 볶음면, 동파육, 짜장면, 짬뽕, 마파두부, 탕수육, 토마토 달걀볶음, 고추잡채").split(","))),
@@ -20,8 +21,16 @@ public enum Menu {
     }
 
     public Menu recommendCategory(){
-        int randomNumber = Randoms.pickNumberInRange(1,5) - 1;
+        int randomNumber = Randoms.pickNumberInRange(1,5);
         return Menu.values()[randomNumber];
+    }
+
+    public Menu getCategory(String categoryName) {
+        for(Menu menu : Menu.values()){
+            if(menu.category.equals(categoryName))
+                return menu;
+        }
+        return DEFAULT;
     }
 
     public String recommendMenu(){
