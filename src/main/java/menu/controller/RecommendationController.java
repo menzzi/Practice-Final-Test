@@ -1,6 +1,5 @@
 package menu.controller;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -25,7 +24,7 @@ public class RecommendationController {
         output.printServiceLaunchStatement();
         List<String> coachNames = inputCoachNames();
         RecommendedCategories recommendedCategories = recommendCategory();
-        recommendMenu(recommendedCategories.getRecommendedCategories(),coachNames)
+        recommendMenu(recommendedCategories.getRecommendedCategories(),coachNames);
     }
 
     private RecommendedCategories recommendCategory(){
@@ -45,16 +44,13 @@ public class RecommendationController {
     private void recommendMenu(List<String> recommendedCategories, List<String> coachNames){
         for(String coach : coachNames){
             RecommendedMenus recommendedMenu = updateHateMenu(coach);
-            selectMenu(recommendedCategories,recommendedMenu);
+            for(String category : recommendedCategories){
+                Menu menu = Menu.getCategory(category);
+                updateMenu(recommendedMenu,menu);
+            }
         }
     }
 
-    private void selectMenu(List<String> recommendedCategories, RecommendedMenus recommendedMenu){
-        for(String category : recommendedCategories){
-            Menu menu = Menu.getCategory(category);
-            updateMenu(recommendedMenu,menu);
-        }
-    }
     private void updateMenu(RecommendedMenus recommendedMenu, Menu menu){
         try{
             recommendedMenu.updateMenu(menu.recommendMenu());
@@ -64,12 +60,19 @@ public class RecommendationController {
     }
 
     private RecommendedMenus updateHateMenu(String coach){
-        List<String> hateMenus = input.inputHateMenu(coach);
-        // 없는 메뉴인지 확인
+        boolean isCollectInput = false;
+        List<String> hateMenus = List.of();
+        while(!isCollectInput){
+            try{
+                hateMenus = input.inputHateMenu(coach);
+                // 없는 메뉴인지 확인
+                isCollectInput = true;
+            }catch (IllegalArgumentException e){
+                output.printErrorMessage(e.getMessage());
+            }
+        }
         return new RecommendedMenus(coach, hateMenus, Collections.emptyList());
     }
-
-
 
     private List<String> inputCoachNames(){
         try{
@@ -80,5 +83,7 @@ public class RecommendationController {
         }
     }
 
-
+    private void printResult(){
+        
+    }
 }
