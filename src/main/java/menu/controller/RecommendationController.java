@@ -1,9 +1,10 @@
 package menu.controller;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import menu.model.Menu;
+import menu.model.TheMenu;
 import menu.model.RecommendedCategories;
 import menu.model.RecommendedMenus;
 import menu.view.InputView;
@@ -21,15 +22,15 @@ public class RecommendationController {
         this.output = output;
     }
 
-    public void run(){
+    public void run() {
         output.printServiceLaunchStatement();
         List<String> coachNames = inputCoachNames();
         RecommendedCategories recommendedCategories = recommendCategory();
-        recommendMenu(recommendedCategories.getRecommendedCategories(),coachNames);
+        recommendMenu(recommendedCategories.getRecommendedCategories(), coachNames);
         printResult(recommendedCategories);
     }
 
-    private RecommendedCategories recommendCategory(){
+    private RecommendedCategories recommendCategory() {
         RecommendedCategories recommendedCategories = new RecommendedCategories(new ArrayList<>());
         for (String day : dayOfTheWeek) {
             repeatRecommendCategory(recommendedCategories);
@@ -37,9 +38,9 @@ public class RecommendationController {
         return recommendedCategories;
     }
 
-    private void repeatRecommendCategory(RecommendedCategories recommendedCategories){
+    private void repeatRecommendCategory(RecommendedCategories recommendedCategories) {
         while (true) {
-            String category = Menu.recommendCategory();
+            String category = TheMenu.recommendCategory(Randoms.pickNumberInRange(1, 5));
             try {
                 recommendedCategories.updateCategories(category);
                 break;
@@ -48,43 +49,42 @@ public class RecommendationController {
         }
     }
 
-    private void recommendMenu(List<String> recommendedCategories, List<String> coachNames){
-        for(String coach : coachNames){
+    private void recommendMenu(List<String> recommendedCategories, List<String> coachNames) {
+        for (String coach : coachNames) {
             RecommendedMenus eachCoachMenus = updateHateMenu(coach);
-            for(String category : recommendedCategories){
-                Menu menu = Menu.getCategory(category);
-                updateMenu(eachCoachMenus,menu);
+            for (String category : recommendedCategories) {
+                updateMenu(eachCoachMenus, category);
             }
             recommendedMenus.add(eachCoachMenus);
         }
     }
 
-    private void updateMenu(RecommendedMenus eachCoachMenus, Menu menu){
+    private void updateMenu(RecommendedMenus eachCoachMenus, String category) {
         while (true) {
             try {
-                eachCoachMenus.updateMenu(menu.recommendMenu());
+                eachCoachMenus.updateMenu(TheMenu.recommendMenu(category));
                 break;
             } catch (IllegalArgumentException ignored) {
             }
         }
     }
 
-    private RecommendedMenus updateHateMenu(String coach){
+    private RecommendedMenus updateHateMenu(String coach) {
         boolean isCollectInput = false;
         List<String> hateMenus = new ArrayList<>();
-        while(!isCollectInput){
-            try{
+        while (!isCollectInput) {
+            try {
                 hateMenus = input.inputHateMenu(coach);
                 // 없는 메뉴인지 확인
                 isCollectInput = true;
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 output.printErrorMessage(e.getMessage());
             }
         }
         return new RecommendedMenus(coach, hateMenus, new ArrayList<>());
     }
 
-    private List<String> inputCoachNames(){
+    private List<String> inputCoachNames() {
         while (true) {
             try {
                 return input.inputCoachNames();
@@ -94,10 +94,10 @@ public class RecommendationController {
         }
     }
 
-    private void printResult(RecommendedCategories recommendedCategories){
+    private void printResult(RecommendedCategories recommendedCategories) {
         output.printResult(dayOfTheWeek);
         output.printMenuRecommendationResult(recommendedCategories.toString());
-        for(RecommendedMenus recommendedMenu: recommendedMenus){
+        for (RecommendedMenus recommendedMenu : recommendedMenus) {
             output.printMenuRecommendationResult(recommendedMenu.toString());
         }
         output.printEndMessage();

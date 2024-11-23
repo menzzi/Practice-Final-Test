@@ -7,23 +7,23 @@ public class RecommendedMenus {
     private final List<String> hateMenus;
     private final List<String> recommendedMenus;
 
-    public RecommendedMenus(String coach, List<String> hateMenus, List<String> recommendedMenus){
+    public RecommendedMenus(String coach, List<String> hateMenus, List<String> recommendedMenus) {
         this.coach = coach;
         this.hateMenus = hateMenus;
         this.recommendedMenus = recommendedMenus;
     }
 
-    public void updateMenu(String menu){
-        if(recommendedMenus.contains(menu) || hateMenus.contains(menu)){
+    public void updateMenu(String menu) {
+        if (recommendedMenus.contains(menu) || hateMenus.contains(menu)) {
             throw new IllegalArgumentException();
         }
         recommendedMenus.add(menu);
     }
 
-    public String toString(){
+    public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(coach);
-        for(String recommendedMenu : recommendedMenus){
+        for (String recommendedMenu : recommendedMenus) {
             stringBuilder.append(" | ");
             stringBuilder.append(recommendedMenu);
         }

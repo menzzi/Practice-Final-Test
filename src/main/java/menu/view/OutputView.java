@@ -9,33 +9,33 @@ public class OutputView {
     private final String MENU_RECOMMENDATION_END_STATEMENT = "추천을 완료했습니다.";
     private final String PRINT_FORMAT = "[ %s ]";
 
-    public void printErrorMessage(String errorMessage){
-        System.out.printf(ERROR_MESSAGE_FORMAT,errorMessage);
+    public void printErrorMessage(String errorMessage) {
+        System.out.printf(ERROR_MESSAGE_FORMAT, errorMessage);
         System.out.println();
     }
 
-    public void printServiceLaunchStatement(){
+    public void printServiceLaunchStatement() {
         System.out.println(SERVICE_LAUNCH_STATEMENT);
     }
 
-    public void printResult(List<String> dayOfTheWeek){
+    public void printResult(List<String> dayOfTheWeek) {
         System.out.println(MENU_RECOMMENDATION_RESULT_STATEMENT);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("구분");
-        for(String day : dayOfTheWeek){
+        for (String day : dayOfTheWeek) {
             stringBuilder.append(" | ");
             stringBuilder.append(day);
         }
-        System.out.printf(PRINT_FORMAT,stringBuilder.toString());
+        System.out.printf(PRINT_FORMAT, stringBuilder.toString());
         System.out.println();
     }
 
-    public void printMenuRecommendationResult(String toStringMessage){
-        System.out.printf(PRINT_FORMAT,toStringMessage);
+    public void printMenuRecommendationResult(String toStringMessage) {
+        System.out.printf(PRINT_FORMAT, toStringMessage);
         System.out.println();
     }
 
-    public void printEndMessage(){
+    public void printEndMessage() {
         System.out.println(MENU_RECOMMENDATION_END_STATEMENT);
     }
 }

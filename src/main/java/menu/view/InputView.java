@@ -15,45 +15,45 @@ public class InputView {
     private final String INVALIDATE_NAME_LENGTH = "이름은 최소 2글자 이상, 최대 4글자 이하로 입력해야 합니다.";
     private final String INVALIDATE_MENU_COUNT = "메뉴는 최대 2개로 입력해야 합니다.";
 
-    public List<String> inputCoachNames(){
+    public List<String> inputCoachNames() {
         System.out.println(NAME_INPUT_GUIDE);
         return validateCoachNames(Console.readLine());
     }
 
-    public List<String> inputHateMenu(String coachName){
+    public List<String> inputHateMenu(String coachName) {
         System.out.printf(MENU_INPUT_GUIDE, coachName);
         System.out.println();
         return validateHateMenus(Console.readLine());
     }
 
-    private List<String> validateCoachNames(String userInput){
+    private List<String> validateCoachNames(String userInput) {
         List<String> coachNames = new ArrayList<>(Arrays.asList(userInput.split(",")));
-        if(coachNames.size() < 2 || coachNames.size() > 5){
+        if (coachNames.size() < 2 || coachNames.size() > 5) {
             throw new IllegalArgumentException(INVALIDATE_COACH_COUNT);
         }
-        for(String name : coachNames){
+        for (String name : coachNames) {
             validateCoachNameLength(name);
         }
         validateCoachNameDuplicate(coachNames);
         return coachNames;
     }
 
-    private void validateCoachNameLength(String name){
-        if(name.length() < 2 || name.length() > 4){
+    private void validateCoachNameLength(String name) {
+        if (name.length() < 2 || name.length() > 4) {
             throw new IllegalArgumentException(INVALIDATE_NAME_LENGTH);
         }
     }
 
-    private void validateCoachNameDuplicate(List<String> coachNames){
+    private void validateCoachNameDuplicate(List<String> coachNames) {
         Set<String> duplicateCheck = new HashSet<>(coachNames);
-        if(duplicateCheck.size() != coachNames.size()){
+        if (duplicateCheck.size() != coachNames.size()) {
             throw new IllegalArgumentException(INVALIDATE_DUPLICATE_NAME);
         }
     }
 
-    private List<String> validateHateMenus(String userInput){
+    private List<String> validateHateMenus(String userInput) {
         List<String> HateMenus = new ArrayList<>(Arrays.asList(userInput.split(",")));
-        if(HateMenus.size() > 2){
+        if (HateMenus.size() > 2) {
             throw new IllegalArgumentException(INVALIDATE_MENU_COUNT);
         }
         return HateMenus;
