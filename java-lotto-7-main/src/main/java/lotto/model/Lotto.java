@@ -41,4 +41,8 @@ public class Lotto {
     public boolean isBonusMatch(int bonusNumber) {
         return numbers.contains(bonusNumber);
     }
+
+    public String toString(){
+        return numbers.toString();
+    }
 }
