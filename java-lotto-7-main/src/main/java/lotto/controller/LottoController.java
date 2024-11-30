@@ -2,7 +2,7 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
+import lotto.model.Lotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
