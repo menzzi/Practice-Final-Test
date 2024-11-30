@@ -32,6 +32,8 @@ public class LottoService {
     }
 
     public static String calculateProfit(int userAmount, int totalPrizeAmount){
-        return String.format("%.1f", (double) totalPrizeAmount/userAmount);
+        double profit = (double) totalPrizeAmount / (userAmount *10);
+        String stringProfit = String.format("%.1f", profit);
+        return stringProfit + "%";
     }
 }

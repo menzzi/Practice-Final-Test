@@ -82,7 +82,7 @@ public class LottoController {
                 continue;
             }
             totalAmount += result.getPrizeAmount() * results.get(result);
-            output.printResult(result.toString(), results.get(result));
+            output.printResult(result.toString(results.get(result)));
         }
         output.printProfit(LottoService.calculateProfit(amount,totalAmount));
 
