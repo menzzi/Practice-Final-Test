@@ -20,7 +20,13 @@ public class LottoController {
 
     public void run() {
         int amount = inputUserAmount() / 1000;
+        output.printLottoCount(amount);
+
         List<Lotto> LottoTickets = issueLottoTickets(amount);
+        for(Lotto lotto : LottoTickets){
+            output.printLottoTicket(lotto.toString());
+        }
+
         Lotto winningLotto = inputWinningNumber();
         int bonusNumber = inputBonusNumber(winningLotto);
     }
