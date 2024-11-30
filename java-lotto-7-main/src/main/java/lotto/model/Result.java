@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.text.DecimalFormat;
+
 public enum Result {
     NOTHING(0,0,false),
     FIFTH(3,5000,false),
@@ -11,6 +13,8 @@ public enum Result {
     private final int matchCount;
     private final int prizeAmount;
     private final boolean isBonusMatch;
+
+    public static final DecimalFormat NUMBER_FORMAT = new DecimalFormat("###,###");
 
     Result(int matchCount, int prizeAmount, boolean isBonusMatch){
         this.matchCount = matchCount;
@@ -29,5 +33,9 @@ public enum Result {
 
     public int getPrizeAmount() {
         return prizeAmount;
+    }
+
+    public String toString(int count) {
+        return matchCount + "개 일치 (" + NUMBER_FORMAT.format(prizeAmount) + ") - %d개";
     }
 }
