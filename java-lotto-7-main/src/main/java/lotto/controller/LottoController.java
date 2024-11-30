@@ -2,7 +2,9 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import lotto.model.Lotto;
+import lotto.model.Result;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -29,6 +31,9 @@ public class LottoController {
 
         Lotto winningLotto = inputWinningNumber();
         int bonusNumber = inputBonusNumber(winningLotto);
+
+        Map<Result,Integer> results = LottoService.findResults(LottoTickets,winningLotto,bonusNumber);
+        printResult(results,amount);
     }
 
     private int inputUserAmount(){
@@ -67,6 +72,20 @@ public class LottoController {
             output.printErrorMessage(e.getMessage());
             return inputBonusNumber(winningLotto);
         }
+    }
+
+    private void printResult(Map<Result,Integer> results, int amount){
+        output.printResultMessage();
+        int totalAmount = 0;
+        for(Result result : results.keySet()){
+            if(result.name().equals("NOTHING")){
+                continue;
+            }
+            totalAmount += result.getPrizeAmount() * results.get(result);
+            output.printResult(result.toString(), results.get(result));
+        }
+        output.printProfit(LottoService.calculateProfit(amount,totalAmount));
+
     }
 
     private void validateBonusNumber(Lotto winningLotto, int number){
