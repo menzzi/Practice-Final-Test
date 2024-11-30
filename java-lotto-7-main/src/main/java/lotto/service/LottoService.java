@@ -27,12 +27,11 @@ public class LottoService {
             Result result = Result.findResult(matchCount, isBonusMatch);
             results.put(result, results.get(result) + 1);
         }
-
         return results;
     }
 
-    public static String calculateProfit(int userAmount, int totalPrizeAmount){
-        double profit = (double) totalPrizeAmount / (userAmount *10);
+    public static String calculateProfit(int userAmount, int totalPrizeAmount) {
+        double profit = (double) totalPrizeAmount / (userAmount * 10);
         String stringProfit = String.format("%.1f", profit);
         return stringProfit + "%";
     }

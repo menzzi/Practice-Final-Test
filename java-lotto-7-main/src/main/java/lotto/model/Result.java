@@ -50,7 +50,7 @@ public enum Result {
     }
 
     public String toString(int count) {
-        if(this.name().equals("SECOND")){
+        if (this.name().equals("SECOND")) {
             return matchCount + "개 일치, 보너스 볼 일치 (" + NUMBER_FORMAT.format(prizeAmount) + "원) - " + count + "개";
         }
         return matchCount + "개 일치 (" + NUMBER_FORMAT.format(prizeAmount) + "원) - " + count + "개";

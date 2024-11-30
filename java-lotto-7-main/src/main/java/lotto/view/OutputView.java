@@ -29,6 +29,6 @@ public class OutputView {
     }
 
     public void printProfit(String profit) {
-        System.out.printf(PROFIT_MESSAGE,profit);
+        System.out.printf(PROFIT_MESSAGE, profit);
     }
 }

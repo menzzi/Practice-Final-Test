@@ -85,7 +85,6 @@ public class LottoController {
             output.printResult(result.toString(results.get(result)));
         }
         output.printProfit(LottoService.calculateProfit(amount,totalAmount));
-
     }
 
     private void validateBonusNumber(Lotto winningLotto, int number){

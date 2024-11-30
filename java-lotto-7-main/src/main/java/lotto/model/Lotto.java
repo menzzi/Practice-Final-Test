@@ -11,7 +11,6 @@ public class Lotto {
     public final String INVALIDATE_LOTTO_RANGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     public final String INVALIDATE_LOTTO_DUPLICATE = "로또 번호는 중복되면 안됩니다.";
 
-
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
@@ -23,7 +22,7 @@ public class Lotto {
         }
         List<Integer> checkDuplicate = new ArrayList<>();
         for (int number : numbers) {
-            if(checkDuplicate.contains(number)){
+            if (checkDuplicate.contains(number)) {
                 throw new IllegalArgumentException(INVALIDATE_LOTTO_DUPLICATE);
             }
             checkDuplicate.add(number);
@@ -37,10 +36,16 @@ public class Lotto {
     public int compareWithWinningNumber(Lotto winningNumber) {
         int matchCount = 0;
         for (int lottoIndex = 0; lottoIndex < 6; lottoIndex++) {
-            for (int winningNumberIndex = 0; winningNumberIndex < 6; winningNumberIndex++) {
-                if (Objects.equals(numbers.get(lottoIndex), winningNumber.numbers.get(winningNumberIndex))) {
-                    matchCount++;
-                }
+            matchCount += countMatch(lottoIndex, winningNumber);
+        }
+        return matchCount;
+    }
+
+    private int countMatch(int lottoIndex, Lotto winningNumber) {
+        int matchCount = 0;
+        for (int winningNumberIndex = 0; winningNumberIndex < 6; winningNumberIndex++) {
+            if (Objects.equals(numbers.get(lottoIndex), winningNumber.numbers.get(winningNumberIndex))) {
+                matchCount++;
             }
         }
         return matchCount;
@@ -50,7 +55,7 @@ public class Lotto {
         return numbers.contains(bonusNumber);
     }
 
-    public String toString(){
+    public String toString() {
         return numbers.toString();
     }
 }
