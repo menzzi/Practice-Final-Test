@@ -36,6 +36,6 @@ public enum Result {
     }
 
     public String toString(int count) {
-        return matchCount + "개 일치 (" + NUMBER_FORMAT.format(prizeAmount) + ") - %d개";
+        return matchCount + "개 일치 (" + NUMBER_FORMAT.format(prizeAmount) + ") - %d개%n";
     }
 }
