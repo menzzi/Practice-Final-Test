@@ -1,6 +1,8 @@
 package lotto.model;
 
 import java.text.DecimalFormat;
+import java.util.EnumMap;
+import java.util.Map;
 
 public enum Result {
     NOTHING(0,0,false),
@@ -33,6 +35,18 @@ public enum Result {
 
     public int getPrizeAmount() {
         return prizeAmount;
+    }
+
+    public static Map<Result, Integer> makeResultMap(){
+        Map<Result, Integer> resultMap = new EnumMap<>(Result.class);
+        resultMap.put(NOTHING, 0);
+        resultMap.put(FIFTH, 0);
+        resultMap.put(FOURTH, 0);
+        resultMap.put(THIRD, 0);
+        resultMap.put(SECOND, 0);
+        resultMap.put(FIRST, 0);
+
+        return resultMap;
     }
 
     public String toString(int count) {

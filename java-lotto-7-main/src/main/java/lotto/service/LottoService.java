@@ -3,7 +3,6 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import lotto.model.Lotto;
@@ -17,7 +16,7 @@ public class LottoService {
     }
 
     public static Map<Result, Integer> findResults(List<Lotto> lottoTickets, Lotto winningLotto, int bonusNumber) {
-        Map<Result, Integer> results = new EnumMap<>(Result.class);
+        Map<Result, Integer> results = Result.makeResultMap();
 
         for (Lotto lotto : lottoTickets) {
             int matchCount = lotto.compareWithWinningNumber(winningLotto);
