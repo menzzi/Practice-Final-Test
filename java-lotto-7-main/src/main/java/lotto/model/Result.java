@@ -18,7 +18,7 @@ public enum Result {
         this.isBonusMatch = isBonusMatch;
     }
 
-    public Result findResult(int matchCount, boolean isBonusMatch){
+    public static Result findResult(int matchCount, boolean isBonusMatch){
         for(Result result : Result.values()){
             if(result.matchCount == matchCount && result.isBonusMatch == isBonusMatch){
                 return result;
