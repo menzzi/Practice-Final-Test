@@ -32,4 +32,7 @@ public class LottoService {
         return results;
     }
 
+    public static String calculateProfit(int userAmount, int totalPrizeAmount){
+        return String.format("%.1f", (double) totalPrizeAmount/userAmount);
+    }
 }
