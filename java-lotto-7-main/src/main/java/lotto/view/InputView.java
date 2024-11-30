@@ -7,17 +7,17 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class InputView {
-    public static String ENTER_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
-    public static String ENTER_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
-    public static String ENTER_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+    public static final String ENTER_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
+    public static final String ENTER_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
+    public static final String ENTER_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public static String INVALIDATE_NUMERIC_FORMAT = "숫자를 입력해주세요.";
-    public static String INVALIDATE_AMOUNT_FORMAT = "구입금액은 1,000원 단위입니다.";
-    public static String INVALIDATE_INPUT_FORMAT = "올바르지 않은 형식입니다.";
+    public static final String INVALIDATE_NUMERIC_FORMAT = "숫자를 입력해주세요.";
+    public static final String INVALIDATE_AMOUNT_FORMAT = "구입금액은 1,000원 단위입니다.";
+    public static final String INVALIDATE_INPUT_FORMAT = "올바르지 않은 형식입니다.";
 
-    public static String INVALIDATE_LOTTO_RANGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
-    public static String INVALIDATE_LOTTO_DUPLICATE = "로또 번호는 중복되면 안됩니다.";
-    public static String INVALIDATE_LOTTO_COUNT = "로또 번호는 6자리입니다.";
+    public static final String INVALIDATE_LOTTO_RANGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+    public static final String INVALIDATE_LOTTO_DUPLICATE = "로또 번호는 중복되면 안됩니다.";
+    public static final String INVALIDATE_LOTTO_COUNT = "로또 번호는 6자리입니다.";
 
     public static final Pattern NUMERIC_PATTERN = Pattern.compile("^[0-9,]+$");
 
