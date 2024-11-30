@@ -39,6 +39,7 @@ public class LottoController {
     private int inputUserAmount(){
         try{
             return input.inputUserAmount();
+            // 아쉬운점 2. 재귀말고 안전하게 반복문을 사용하자.
         } catch (IllegalArgumentException e) {
             output.printErrorMessage(e.getMessage());
             return inputUserAmount();
@@ -49,6 +50,7 @@ public class LottoController {
         List<Lotto> lottoTickets = new ArrayList<>();
         for(int i=0;i<count;i++){
             Lotto lottoTicket = new Lotto(LottoService.makeLottoNumber());
+            // 아쉬운 점 3. 로또 생성은 로또서비스에서 하자!
             lottoTickets.add(lottoTicket);
         }
         return lottoTickets;

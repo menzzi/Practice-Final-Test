@@ -27,6 +27,7 @@ public class LottoService {
             Result result = Result.findResult(matchCount, isBonusMatch);
             results.put(result, results.get(result) + 1);
         }
+        // 아쉬운 점 1. 이건 Result에서 처리하도록
         return results;
     }
 
